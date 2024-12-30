@@ -1,0 +1,20 @@
+<launch>
+  <!-- Include other launch files as you currently have -->
+  <include file="$(find pde4430_cw2_robot_description)/launch/assessment_world.launch" />
+  <include file="$(find pde4430_cw2_robot_description)/launch/objects.launch" />
+
+  <!-- Static transform for base footprint -->
+  <node name="tf_footprint_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link base_footprint 40" />
+
+  <!-- Spawn model in Gazebo -->
+  <node name="spawn_myrobot" pkg="gazebo_ros" type="spawn_model" args="-file $(find pde4430_cw2_robot_description)/urdf/myrobot.urdf -urdf -model pde4430_cw2_robot_description" output="screen" />
+
+  <!-- Add the differential drive controller -->
+  <rosparam command="load" file="$(find pde4430_cw2_robot_description)/config/diff_drive_controller.yaml" />
+  <node name="robot_controller" pkg="controller_manager" type="spawner" args="diff_drive_controller" />
+
+  <!-- Fake joint calibration, if needed -->
+  <node name="fake_joint_calibration" pkg="rostopic" type="rostopic" args="pub /calibrated std_msgs/Bool true" />
+
+  <node name="robot_mover" pkg="pde4430_cw2_robot_description" type="python_move_robot" />
+</launch>
