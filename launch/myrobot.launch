@@ -1,0 +1,21 @@
+<launch>
+      <!-- URDF file path -->
+      <param name="robot_description" textfile="$(find pde4430_cw2_robot_description)/urdf/myrobot.urdf" /> 
+
+      <!-- Spawn an empty Gazebo world -->
+      <include file="$(find gazebo_ros)/launch/empty_world.launch" /> 
+
+      <!-- Static transform publisher (base_link to base_footprint) -->
+      <node name="tf_footprint_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link base_footprint 40" /> 
+
+      <!-- Spawn robot model in Gazebo -->
+      <node name="spawn_myrobot" pkg="gazebo_ros" type="spawn_model" args="-file $(find pde4430_cw2_robot_description)/urdf/myrobot.urdf -urdf -model pde4430_cw2_robot_description" output="screen" />
+
+      <!-- Load and launch the Joint Controller -->
+      <rosparam file="$(find pde4430_cw2_robot_description)/config/joint_controller.yaml" command="load"/>   
+      <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="robot_wheel_controller robot_gripper_controller joint_state_controller" />
+
+
+      <!-- Robot State Publisher for TF of each joint -->
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/> 
+</launch>

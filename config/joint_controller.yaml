@@ -1,0 +1,26 @@
+# Controller to control robot wheels
+robot_wheel_controller:
+  type: "velocity_controllers/JointTrajectoryController"
+  joints:
+    - left_wheel_joint
+    - right_wheel_joint
+  gains:
+    left_wheel_joint: {p: 100.0, i: 0.01, d: 1.0}
+    right_wheel_joint: {p: 100.0, i: 0.01, d: 1.0}
+  constraints:
+    goal_time: 0.6
+    left_wheel_joint: {trajectory: 0.05, goal: 0.02}
+    right_wheel_joint: {trajectory: 0.05, goal: 0.02}
+
+# Controller to control robot grippers
+robot_gripper_controller:
+  type: "effort_controllers/JointTrajectoryController"
+  joints:
+    - right_gripper_joint
+  gains:
+    right_gripper_joint: {p: 50.0, i: 0.01, d: 0.5}
+
+# Controller to continuously publish joint states/positions
+joint_state_controller:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 50
