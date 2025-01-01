@@ -10,6 +10,12 @@ project(pde4430_cw2_robot_description)
 find_package(catkin REQUIRED COMPONENTS
   gazebo_ros
   urdf
+  rospy 
+  geometry_msgs
+  roscpp
+  std_msgs
+  xacro
+  # message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,7 +110,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES pde4430_cw2_robot_description
-#  CATKIN_DEPENDS gazebo_ros urdf
+ CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs urdf
 #  DEPENDS system_lib
 )
 
