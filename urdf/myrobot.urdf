@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot
-  name="pde4430_cw2_robot_new">
-  <link name="map" />
-  <joint name="map_to_chassy" type="fixed">
-    <parent link="map" />
-    <child link="chassy" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
-  </joint>
-  <link
-    name="chassy">
+<robot name="pde4430_cw2_robot_new"> 
+
+  <link name="chassy">
     <inertial>
-      <origin
-        xyz="0.156310093203508 -0.363188727209813 0.14499616506544"
-        rpy="0 0 0" />
-      <mass
-        value="6.57018555863407" />
+      <origin xyz="0.156310093203508 -0.363188727209813 0.14499616506544" rpy="0 0 0" />
+      <mass value="6.57018555863407"/>
       <inertia
         ixx="0.063799383817478"
         ixy="1.03487054913412E-17"
@@ -24,37 +14,26 @@
         izz="0.141835546879895" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/chassy.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/chassy.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.647 0.165 0.165 1" />
+      <material name="">
+        <color rgba="0.647 0.165 0.165 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/chassy.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/chassy.STL" />
       </geometry>
     </collision>
   </link>
-  <link
-    name="left_wheel">
+
+  <link name="left_wheel">
     <inertial>
-      <origin
-        xyz="-5.21804821573824E-15 0.0295390266328485 -2.47024622979097E-15"
-        rpy="0 0 0" />
-      <mass
-        value="1.16602182282338" />
+      <origin xyz="-5.21804821573824E-15 0.0295390266328485 -2.47024622979097E-15" rpy="0 0 0" />
+      <mass value="1.16602182282338" />
       <inertia
         ixx="0.00224997851896062"
         ixy="1.51700484940178E-16"
@@ -64,50 +43,33 @@
         izz="0.00224997851896062" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/left_wheel.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/left_wheel.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.149 0.933 0.929 1" />
+      <material name="">
+        <color rgba="0.149 0.933 0.929 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/left_wheel.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/left_wheel.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="left_wheel_joint"
-    type="continuous">
-    <origin
-      xyz="0.149280792728888 -0.533188727209813 0.142605370600387"
-      rpy="3.14159265358979 -0.327303974077709 0" />
-    <parent
-      link="chassy" />
-    <child
-      link="left_wheel" />
-    <axis
-      xyz="0 1 0" />
+
+  <joint name="left_wheel_joint" type="continuous">
+    <origin xyz="0.149280792728888 -0.533188727209813 0.142605370600387" rpy="3.14159265358979 -0.327303974077709 0" />
+    <parent link="chassy" />
+    <child link="left_wheel" />
+    <axis xyz="0 1 0" />
   </joint>
-  <link
-    name="right_wheel">
+
+  <link name="right_wheel">
     <inertial>
-      <origin
-        xyz="-5.02375918642883E-15 -0.0304609733671515 -2.45636844198316E-15"
-        rpy="0 0 0" />
-      <mass
-        value="1.16602182282338" />
+      <origin xyz="-5.02375918642883E-15 -0.0304609733671515 -2.45636844198316E-15" rpy="0 0 0" />
+      <mass value="1.16602182282338" />
       <inertia
         ixx="0.00224997851896063"
         ixy="1.51624800598667E-16"
@@ -117,50 +79,33 @@
         izz="0.00224997851896063" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/right_wheel.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/right_wheel.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.149 0.933 0.929 1" />
+      <material name="">
+        <color rgba="0.149 0.933 0.929 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/right_wheel.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/right_wheel.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="right_wheel_joint"
-    type="continuous">
-    <origin
-      xyz="0.149280792728888 -0.133188727209813 0.142605370600387"
-      rpy="-3.14159265358979 0.393094810426521 -3.14159265358979" />
-    <parent
-      link="chassy" />
-    <child
-      link="right_wheel" />
-    <axis
-      xyz="0 1 0" />
+
+  <joint name="right_wheel_joint" type="continuous">
+    <origin xyz="0.149280792728888 -0.133188727209813 0.142605370600387" rpy="-3.14159265358979 0.393094810426521 -3.14159265358979" />
+    <parent link="chassy" />
+    <child link="right_wheel" />
+    <axis xyz="0 1 0" />
   </joint>
-  <link
-    name="left_gripper">
+
+  <link name="left_gripper">
     <inertial>
-      <origin
-        xyz="-0.129875210051789 0.153218916331966 0.0723549039504964"
-        rpy="0 0 0" />
-      <mass
-        value="1.86518207129963" />
+      <origin xyz="-0.129875210051789 0.153218916331966 0.0723549039504964" rpy="0 0 0" />
+      <mass value="1.86518207129963" />
       <inertia
         ixx="0.020345693535521"
         ixy="-0.000945510032094421"
@@ -170,59 +115,35 @@
         izz="0.0394264320820596" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/left_gripper.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/left_gripper.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.678 0.847 0.902 1" />
+      <material name="">
+        <color rgba="0.678 0.847 0.902 1" />
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/left_gripper.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/left_gripper.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="left_gripper_joint"
-    type="revolute">
-    <origin
-      xyz="-0.021917 -0.40319 0.062605"
-      rpy="1.5708 0 -0.081634" />
-    <parent
-      link="chassy" />
-    <child
-      link="left_gripper" />
-    <axis
-      xyz="0 1 0" />
-    <limit
-      lower="0.61"
-      upper="-0.78"
-      effort="10"
-      velocity="5" />
-    <mimic
-      joint="right_gripper_joint"
-      multiplier="-1"
-      offset="0" />
+
+  <joint name="left_gripper_joint" type="revolute">
+    <origin xyz="-0.021917 -0.40319 0.062605" rpy="1.5708 0 -0.081634" />
+    <parent link="chassy" />
+    <child link="left_gripper" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.78" upper="0.61" effort="10" velocity="5" />
+    <mimic joint="right_gripper_joint" multiplier="-1" offset="0" />
   </joint>
-  <link
-    name="right_gripper">
+
+  <link name="right_gripper">
     <inertial>
-      <origin
-        xyz="-0.116159368597421 0.15387551741621 -0.0694598084327985"
-        rpy="0 0 0" />
-      <mass
-        value="1.61587084761863" />
+      <origin xyz="-0.116159368597421 0.15387551741621 -0.0694598084327985" rpy="0 0 0" />
+      <mass value="1.61587084761863" />
       <inertia
         ixx="0.0142352513490855"
         ixy="-0.000838334319165038"
@@ -232,45 +153,88 @@
         izz="0.0302284196163977" />
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/right_gripper.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/right_gripper.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.678 0.847 0.902 1" />
-      </material>
+      <material name="">
+        <color rgba="0.678 0.847 0.902 1" />
+      </material> 
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://pde4430_cw2_robot_new/meshes/right_gripper.STL" />
+        <mesh filename="package://pde4430_cw2_robot_description/meshes/right_gripper.STL" />
       </geometry>
     </collision>
   </link>
-  <joint
-    name="right_gripper_joint"
-    type="revolute">
-    <origin
-      xyz="-0.021917 -0.32319 0.062605"
-      rpy="1.5708 0 0.07063" />
-    <parent
-      link="chassy" />
-    <child
-      link="right_gripper" />
-    <axis
-      xyz="0 1 0" />
-    <limit
-      lower="-0.78"
-      upper="0.61"
-      effort="10"
-      velocity="5" />
+
+  <joint name="right_gripper_joint" type="revolute">
+    <origin xyz="-0.021917 -0.32319 0.062605" rpy="1.5708 0 0.07063" />
+    <parent link="chassy" />
+    <child link="right_gripper" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.78" upper="0.61" effort="10" velocity="5" />
   </joint>
+
+  <transmission name="left_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_wheel_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="right_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_wheel_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="left_gripper_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_gripper_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> 
+    </joint>
+    <actuator name="left_gripper_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> 
+    </actuator>
+  </transmission>
+
+  <transmission name="right_gripper_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_gripper_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> 
+    </joint>
+    <actuator name="right_gripper_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> 
+    </actuator>
+  </transmission>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <!-- Add collison for each links -->
+  <gazebo reference="left_wheel">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="right_wheel">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="left_gripper">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="right_gripper">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
 </robot>
