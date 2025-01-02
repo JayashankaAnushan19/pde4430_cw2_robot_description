@@ -1,9 +1,0 @@
-diff_drive_controller:
-  type: "diff_drive_controller/DiffDriveController"
-  left_wheel: "left_wheel_joint"
-  right_wheel: "right_wheel_joint"
-  command_topic: "/cmd_vel"
-  odom_topic: "/odom"
-  wheel_separation: 0.5  # Distance between the wheels
-  wheel_radius: 0.1      # Radius of the wheels
-  publish_rate: 50       # Frequency of publishing odometry

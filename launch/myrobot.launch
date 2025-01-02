@@ -13,9 +13,14 @@
 
       <!-- Load and launch the Joint Controller -->
       <rosparam file="$(find pde4430_cw2_robot_description)/config/joint_controller.yaml" command="load"/>   
+      
+      <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="robot_wheel_controller robot_gripper_controller joint_state_controller" /> -->
+      <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="robot_wheel_controller robot_gripper_controller joint_state_controller" /> -->
       <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="robot_wheel_controller robot_gripper_controller joint_state_controller" />
 
 
       <!-- Robot State Publisher for TF of each joint -->
       <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/> 
 </launch>
+
+
