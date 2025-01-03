@@ -54,6 +54,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
+        <!-- <cylinder length="0.04" radius="0.08"/> -->
         <mesh filename="package://pde4430_cw2_robot_description/meshes/left_wheel.STL" />
       </geometry>
     </collision>
@@ -90,6 +91,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
+        <!-- <cylinder length="0.04" radius="0.08"/> -->
         <mesh filename="package://pde4430_cw2_robot_description/meshes/right_wheel.STL" />
       </geometry>
     </collision>
@@ -200,26 +202,26 @@
   <transmission name="left_gripper_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_gripper_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> 
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> 
     </joint>
     <actuator name="left_gripper_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> 
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> 
     </actuator>
   </transmission>
 
   <transmission name="right_gripper_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_gripper_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> 
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> 
     </joint>
     <actuator name="right_gripper_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> 
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> 
     </actuator>
   </transmission>
 
   
   <gazebo>
-    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+    <!-- <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
       <robotNamespace>/</robotNamespace>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
@@ -241,19 +243,14 @@
       <publishTf>true</publishTf> 
       <legacyMode>true</legacyMode>
       <allow_multiple_cmd_vel_publishers></allow_multiple_cmd_vel_publishers>
+    </plugin> -->
+ 
+    <!-- This is a testing code  -->
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
     </plugin>
 
-<!-- This is a testing code  -->
-    <!-- <plugin name="gripper_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
-      <controlTopic>gripper_cmd</controlTopic>
-      <gripperJoint>gripper_joint</gripperJoint>
-      <gripperMaxEffort>10.0</gripperMaxEffort>
-    </plugin> -->
     
-    <!-- <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
-    </plugin> -->
   </gazebo>
 
 

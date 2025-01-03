@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: pde4430_cw2_robot_description
+Description: Description of pde4430_cw2_robot_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs roscpp rospy std_msgs urdf

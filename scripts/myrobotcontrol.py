@@ -26,7 +26,7 @@ def getKey():
 
 def main():
     rospy.init_node('my_teleop_cmds')
-    pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+    pub = rospy.Publisher('/robot_wheel_controller/cmd_vel', Twist, queue_size=10)
     
     # Define initial speed and turn speed
     speed = 1.0

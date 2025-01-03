@@ -4,7 +4,9 @@
 
       <!-- Spawn an empty Gazebo world -->
       <include file="$(find gazebo_ros)/launch/empty_world.launch" /> 
-
+      <!-- <include file="$(find pde4430_cw2_robot_description)/launch/assessment_world.launch" /> -->
+      <include file="$(find pde4430_cw2_robot_description)/launch/objects.launch" />
+ 
       <!-- Static transform publisher (base_link to base_footprint) -->
       <node name="tf_footprint_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link base_footprint 40" /> 
 
@@ -16,8 +18,7 @@
       
       <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="robot_wheel_controller robot_gripper_controller joint_state_controller" /> -->
       <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="robot_wheel_controller robot_gripper_controller joint_state_controller" /> -->
-      <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="robot_wheel_controller robot_gripper_controller joint_state_controller" />
-
+      <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="robot_wheel_controller robot_gripper_controller" />
 
       <!-- Robot State Publisher for TF of each joint -->
       <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/> 
