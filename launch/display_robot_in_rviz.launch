@@ -1,9 +1,12 @@
 <launch>
   <arg
-    name="model" />
+    name="model" /> 
+  <!-- <param
+    name="robot_description"
+    textfile="$(find pde4430_cw2_robot_description)/urdf/myrobot.urdf" /> -->
   <param
     name="robot_description"
-    textfile="$(find pde4430_cw2_robot_description)/urdf/myrobot.urdf" />
+    textfile="$(find pde4430_cw2_robot_description)/urdf/myrobot_with_sensor.urdf" />
   <node
     name="joint_state_publisher_gui"
     pkg="joint_state_publisher_gui"

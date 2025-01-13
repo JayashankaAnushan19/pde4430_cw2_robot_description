@@ -1,12 +1,7 @@
 digraph G {
-"odom" -> "chassy"[label="Broadcaster: /gazebo\nAverage rate: 50.271 Hz\nMost recent transform: 18.742 ( 0.016 sec old)\nBuffer length: 3.879 sec\n"];
-"base_link" -> "base_footprint"[label="Broadcaster: /tf_footprint_base\nAverage rate: 25.052 Hz\nMost recent transform: 18.767 ( -0.009 sec old)\nBuffer length: 3.832 sec\n"];
+"base_link" -> "base_footprint"[label="Broadcaster: /tf_footprint_base\nAverage rate: 25.404 Hz\nMost recent transform: 184.987 ( -0.027 sec old)\nBuffer length: 1.732 sec\n"];
 edge [style=invis];
  subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 18.758"[ shape=plaintext ] ;
- }->"odom";
-edge [style=invis];
- subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 18.758"[ shape=plaintext ] ;
+"Recorded at time: 184.960"[ shape=plaintext ] ;
  }->"base_link";
 }

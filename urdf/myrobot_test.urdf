@@ -54,6 +54,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
+        <!-- <cylinder length="0.04" radius="0.08"/> -->
         <mesh filename="package://pde4430_cw2_robot_description/meshes/left_wheel.STL" />
       </geometry>
     </collision>
@@ -106,11 +107,9 @@
   <link name="right_gripper">
     <inertial>
       <origin xyz="-0.116159368597421 0.15387551741621 -0.0694598084327985" rpy="0 0 0" />
-      <!-- <mass value="1.61587084761863" /> -->
-      <mass value="0.15" />
-      <!-- ixx="0.0142352513490855" -->
-      <inertia        
-        ixx="0.0173"
+      <mass value="1.61587084761863" />
+      <inertia
+        ixx="0.0142352513490855"
         ixy="-0.000838334319165038"
         ixz="-0.00203771100584054"
         iyy="0.022691314466943"
@@ -145,11 +144,9 @@
   <link name="left_gripper">
     <inertial>
       <origin xyz="-0.129875210051789 0.153218916331966 0.0723549039504964" rpy="0 0 0" />
-      <!-- <mass value="1.86518207129963" /> -->
-      <mass value="0.5" />
-      <!-- ixx="0.020345693535521" -->
+      <mass value="1.86518207129963" />
       <inertia
-        ixx="0.0173"
+        ixx="0.020345693535521"
         ixy="-0.000945510032094421"
         ixz="0.00189087832371278"
         iyy="0.0268595354624139"
@@ -181,70 +178,6 @@
     <limit lower="-0.78" upper="0.61" effort="10" velocity="5" />
     <mimic joint="right_gripper_joint" multiplier="-1" offset="0" />
   </joint>
-
-  <!-- Simulated lidar sensor link -->
-  <!-- <link name="lidar">
-    <inertial>
-      <origin xyz="-0.00683937823834196 0.0964816118260995 0.00829015544041439" rpy="0 0 0" />
-      <mass value="1.23381858799223" />
-      <inertia
-        ixx="0.00451130363387816"
-        ixy="5.22137212053203E-20"
-        ixz="-1.69294013125284E-19"
-        iyy="0.00133704721847857"
-        iyz="2.80235174402092E-19"
-        izz="0.00451130363387816" />
-    </inertial>
-    <visual name="lidar_sensor_visual">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://pde4430_cw2_robot_description/meshes/lidar.STL" />
-      </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://pde4430_cw2_robot_description/meshes/lidar.STL" />
-      </geometry>
-    </collision>
-    <sensor name="laser" type="ray">
-      <always_on>1</always_on>
-      <visualize>0</visualize>
-      <pose>-0.064 0 0.121 0 0 0</pose>
-      <update_rate>1800</update_rate>
-      <ray>
-        <scan>
-          <horizontal>
-            <samples>360</samples>
-            <resolution>1.000000</resolution>
-            <min_angle>0.000000</min_angle>
-            <max_angle>6.280000</max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.120000</min>
-          <max>3.5</max>
-          <resolution>0.015000</resolution>
-        </range>
-        <noise>
-          <type>gaussian</type>d
-          <mean>0.0</mean>
-          <stddev>0.01</stddev>
-        </noise>
-      </ray>
-    </sensor>
-  </link> -->
-
-  <!-- Simulate lidar sensor (Gazebo or ROS) -->
-  <!-- <joint name="lidar_joint" type="fixed">
-    <origin xyz="0.19007 -0.35181 0.16761" rpy="1.5708 0 0" />
-    <parent link="chassy" />
-    <child link="lidar" />
-    <axis xyz="0 0 0" />
-  </joint> -->
 
   <transmission name="left_wheel_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -286,19 +219,39 @@
     </actuator>
   </transmission>
 
-  <!-- This is a testing code  -->
+  
   <gazebo>
+    <!-- <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+      <robotNamespace>/</robotNamespace>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>chassy</robotBaseFrame> 
+      <leftJoint>left_wheel_joint</leftJoint>
+      <rightJoint>right_wheel_joint</rightJoint>
+      <wheelSeparation>0.34</wheelSeparation>
+      <wheelRadius>0.08</wheelRadius>
+      <updateRate>50</updateRate>
+      <rosDebugLevel>info</rosDebugLevel>
+      <publishWheelTF>false</publishWheelTF>
+      <publishOdomTF>true</publishOdomTF>
+      <publishWheelJointState>false</publishWheelJointState>
+      <wheelDiameter>0.16</wheelDiameter>
+      <wheelAcceleration>0</wheelAcceleration>
+      <wheelTorque>5</wheelTorque>
+      <odometrySource>1</odometrySource>
+      <publishTf>true</publishTf> 
+      <legacyMode>true</legacyMode>
+      <allow_multiple_cmd_vel_publishers></allow_multiple_cmd_vel_publishers>
+    </plugin> -->
+ 
+    <!-- This is a testing code  -->
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/</robotNamespace>
     </plugin>
+
+    
   </gazebo>
-  <!-- <gazebo>
-    <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
-      <robotNamespace>/</robotNamespace>
-      <frameName>lidar</frameName>
-      <topicName>/scan</topicName>
-    </plugin>
-  </gazebo> -->
 
 
 
