@@ -3,23 +3,23 @@
 
   <link name="chassy">
     <inertial>
-      <origin xyz="0.156310093203508 -0.363188727209813 0.14499616506544" rpy="0 0 0" />
+      <origin xyz="0.16333823019965 -0.363188727032132 0.142594031097362" rpy="0 0 0" />
       <mass value="6.57018555863407"/>
       <inertia
-        ixx="0.063799383817478"
-        ixy="1.03487054913412E-17"
-        ixz="0.00279957757397575"
-        iyy="0.0854035984357382"
-        iyz="-4.2581181594841E-18"
-        izz="0.141835546879895" />
+        ixx="0.0648390550758513"
+        ixy="-1.65844978042012E-10"
+        ixz="0.00497709736164988"
+        iyy="0.0928142242078364"
+        iyz="-3.59005134422651E-11"
+        izz="0.14862887093943" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/chassy.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.647 0.165 0.165 1" />
+      <material name="blue_chassy">
+        <color rgba="0 0 1 1" />
       </material>
     </visual>
     <collision>
@@ -33,7 +33,7 @@
   <link name="left_wheel">
     <inertial>
       <origin xyz="-5.21804821573824E-15 0.0295390266328485 -2.47024622979097E-15" rpy="0 0 0" />
-      <mass value="1.16602182282338" />
+      <mass value="2.16602182282338" />
       <inertia
         ixx="0.00224997851896062"
         ixy="1.51700484940178E-16"
@@ -47,14 +47,13 @@
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/left_wheel.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.149 0.933 0.929 1" />
+      <material name="black_left_wheel">
+        <color rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <!-- <cylinder length="0.04" radius="0.08"/> -->
         <mesh filename="package://pde4430_cw2_robot_description/meshes/left_wheel.STL" />
       </geometry>
     </collision>
@@ -70,7 +69,7 @@
   <link name="right_wheel">
     <inertial>
       <origin xyz="-5.02375918642883E-15 -0.0304609733671515 -2.45636844198316E-15" rpy="0 0 0" />
-      <mass value="1.16602182282338" />
+      <mass value="2.16602182282338" />
       <inertia
         ixx="0.00224997851896063"
         ixy="1.51624800598667E-16"
@@ -84,14 +83,13 @@
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/right_wheel.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.149 0.933 0.929 1" />
+      <material name="black_right_wheel">
+        <color rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <!-- <cylinder length="0.04" radius="0.08"/> -->
         <mesh filename="package://pde4430_cw2_robot_description/meshes/right_wheel.STL" />
       </geometry>
     </collision>
@@ -103,25 +101,25 @@
     <child link="right_wheel" />
     <axis xyz="0 -1 0" />
   </joint>
-
+  
   <link name="right_gripper">
     <inertial>
       <origin xyz="-0.116159368597421 0.15387551741621 -0.0694598084327985" rpy="0 0 0" />
-      <mass value="1.61587084761863" />
+      <mass value="0.15" />
       <inertia
-        ixx="0.0142352513490855"
-        ixy="-0.000838334319165038"
-        ixz="-0.00203771100584054"
-        iyy="0.022691314466943"
-        iyz="-0.000137567477815809"
-        izz="0.0302284196163977" />
+        ixx="0.00173"
+        ixy="-0.000945510032094421"
+        ixz="0.00189087832371278"
+        iyy="0.0268595354624139"
+        iyz="0.000159653946953313"
+        izz="0.0394264320820596" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/right_gripper.STL" />
       </geometry>
-      <material name="">
+      <material name="colored_right_gripper">
         <color rgba="0.678 0.847 0.902 1" />
       </material> 
     </visual>
@@ -129,7 +127,15 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/right_gripper.STL" />
-      </geometry>
+      </geometry>\
+      <surface>
+        <friction>
+          <ode mu="1.0" mu2="1.0" />
+        </friction>
+        <restitution>
+          <ode restitution_coefficient="0.2" threshold="0.5" />
+        </restitution>
+      </surface>
     </collision>
   </link>
 
@@ -138,15 +144,16 @@
     <parent link="chassy" />
     <child link="right_gripper" />
     <axis xyz="0 1 0" />
-    <limit lower="-0.78" upper="0.61" effort="10" velocity="5" />
+    <dynamics damping="0.01"/>
+    <limit lower="-0.78" upper="0.61" effort="20" velocity="1" />
   </joint>
 
   <link name="left_gripper">
     <inertial>
       <origin xyz="-0.129875210051789 0.153218916331966 0.0723549039504964" rpy="0 0 0" />
-      <mass value="1.86518207129963" />
+      <mass value="0.15" />
       <inertia
-        ixx="0.020345693535521"
+        ixx="0.00173"
         ixy="-0.000945510032094421"
         ixz="0.00189087832371278"
         iyy="0.0268595354624139"
@@ -158,7 +165,7 @@
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/left_gripper.STL" />
       </geometry>
-      <material name="">
+      <material name="colored_left_gripper">
         <color rgba="0.678 0.847 0.902 1" />
       </material>
     </visual>
@@ -167,6 +174,16 @@
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/left_gripper.STL" />
       </geometry>
+    <!-- </collision>
+    <collision> -->
+      <surface>
+        <friction>
+          <ode mu="1.0" mu2="1.0" />
+        </friction>
+        <restitution>
+          <ode restitution_coefficient="0.2" threshold="0.5" />
+        </restitution>
+      </surface>
     </collision>
   </link>
 
@@ -175,30 +192,25 @@
     <parent link="chassy" />
     <child link="left_gripper" />
     <axis xyz="0 1 0" />
-    <limit lower="-0.78" upper="0.61" effort="10" velocity="5" />
+    <dynamics damping="0.01"/>
+    <limit lower="-0.78" upper="0.61" effort="20" velocity="1" />
     <mimic joint="right_gripper_joint" multiplier="-1" offset="0" />
   </joint>
 
   <!-- Simulated lidar sensor link -->
-  <!-- <link name="lidar">
+  <link name="lidar">
     <inertial>
       <origin xyz="-0.00683937823834196 0.0964816118260995 0.00829015544041439" rpy="0 0 0" />
-      <mass value="1.23381858799223" />
-      <inertia
-        ixx="0.00451130363387816"
-        ixy="5.22137212053203E-20"
-        ixz="-1.69294013125284E-19"
-        iyy="0.00133704721847857"
-        iyz="2.80235174402092E-19"
-        izz="0.00451130363387816" />
+      <mass value="1.0" />
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
     </inertial>
     <visual name="lidar_sensor_visual">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/lidar.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      <material name="lidar_blue">
+        <color rgba="0 0 1 1" />
       </material>
     </visual>
     <collision>
@@ -207,41 +219,15 @@
         <mesh filename="package://pde4430_cw2_robot_description/meshes/lidar.STL" />
       </geometry>
     </collision>
-    <sensor name="laser" type="ray">
-      <always_on>1</always_on>
-      <visualize>0</visualize>
-      <pose>-0.064 0 0.121 0 0 0</pose>
-      <update_rate>1800</update_rate>
-      <ray>
-        <scan>
-          <horizontal>
-            <samples>360</samples>
-            <resolution>1.000000</resolution>
-            <min_angle>0.000000</min_angle>
-            <max_angle>6.280000</max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.120000</min>
-          <max>3.5</max>
-          <resolution>0.015000</resolution>
-        </range>
-        <noise>
-          <type>gaussian</type>d
-          <mean>0.0</mean>
-          <stddev>0.01</stddev>
-        </noise>
-      </ray>
-    </sensor>
-  </link> -->
+  </link>
 
   <!-- Simulate lidar sensor (Gazebo or ROS) -->
-  <!-- <joint name="lidar_joint" type="fixed">
+  <joint name="lidar_joint" type="fixed">
     <origin xyz="0.19007 -0.35181 0.16761" rpy="1.5708 0 0" />
     <parent link="chassy" />
     <child link="lidar" />
     <axis xyz="0 0 0" />
-  </joint> -->
+  </joint>
 
   <transmission name="left_wheel_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -283,19 +269,14 @@
     </actuator>
   </transmission>
 
-  <!-- This is a testing code  -->
   <gazebo>
+    <!-- Below plugin for wheels and gripper -->
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/</robotNamespace>
     </plugin>
   </gazebo>
-  <!-- <gazebo>
-    <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
-      <robotNamespace>/</robotNamespace>
-      <frameName>lidar</frameName>
-      <topicName>/scan</topicName>
-    </plugin>
-  </gazebo> -->
+  <gazebo>
+    
 
 
 

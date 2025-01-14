@@ -27,9 +27,7 @@
       <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/> 
 
       <!-- Load the lidar driver or simulation -->
-      <!-- <node name="hokuyo_node" pkg="urg_node" type="urg_node" output="screen">
-            <param name="frame_id" value="lidar"/>
-      </node> -->
+      c
 
 
       <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->

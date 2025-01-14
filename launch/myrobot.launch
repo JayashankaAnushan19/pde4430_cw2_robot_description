@@ -6,7 +6,7 @@
       <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch" /> -->
 
       <include file="$(find pde4430_cw2_robot_description)/launch/assessment_world.launch" />
-      <include file="$(find pde4430_cw2_robot_description)/launch/objects.launch" />
+      <!-- <include file="$(find pde4430_cw2_robot_description)/launch/objects.launch" /> -->
  
       <!-- Static transform publisher (base_link to base_footprint) -->
       <node name="tf_world_chassy" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map chassy 50" />
@@ -21,6 +21,9 @@
       <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="robot_wheel_controller robot_gripper_controller" />
 
       <!-- Robot State Publisher for TF of each joint -->
-      <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>  -->
-      
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/> 
+
+      <!-- <node name="newgazebo" pkg="gazebo_ros" type="gzserver" args="verbose" output="screen"/>
+      <node name="mygazebo_client" pkg="gazebo_ros" type="gzclient" output="screen"/> -->
+
 </launch>
