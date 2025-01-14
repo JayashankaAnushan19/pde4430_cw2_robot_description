@@ -26,7 +26,7 @@ def publish_gripper_command(gripper_pub, given_position):
         given_position = 0.5
         msg_gripper_status = "Gripper Open"
     elif given_position == 1:
-        given_position = 0.25
+        given_position = 0.2
         msg_gripper_status = "Gripper Close for Big sphere"
     elif given_position == 2:
         given_position = -0.3

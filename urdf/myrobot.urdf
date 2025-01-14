@@ -3,23 +3,24 @@
 
   <link name="chassy">
     <inertial>
-      <origin xyz="0.156310093203508 -0.363188727209813 0.14499616506544" rpy="0 0 0" />
+      <origin xyz="0.16333823019965 -0.363188727032132 0.142594031097362" rpy="0 0 0" />
       <mass value="6.57018555863407"/>
       <inertia
-        ixx="0.063799383817478"
-        ixy="1.03487054913412E-17"
-        ixz="0.00279957757397575"
-        iyy="0.0854035984357382"
-        iyz="-4.2581181594841E-18"
-        izz="0.141835546879895" />
+        ixx="0.0648390550758513"
+        ixy="-1.65844978042012E-10"
+        ixz="0.00497709736164988"
+        iyy="0.0928142242078364"
+        iyz="-3.59005134422651E-11"
+        izz="0.14862887093943" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/chassy.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.647 0.165 0.165 1" />
+      <material name="blue">
+        <!-- <color rgba="0.647 0.165 0.165 1" /> -->
+        <color rgba="0 0 1 1" />
       </material>
     </visual>
     <collision>
@@ -33,7 +34,7 @@
   <link name="left_wheel">
     <inertial>
       <origin xyz="-5.21804821573824E-15 0.0295390266328485 -2.47024622979097E-15" rpy="0 0 0" />
-      <mass value="1.16602182282338" />
+      <mass value="2.16602182282338" />
       <inertia
         ixx="0.00224997851896062"
         ixy="1.51700484940178E-16"
@@ -69,7 +70,7 @@
   <link name="right_wheel">
     <inertial>
       <origin xyz="-5.02375918642883E-15 -0.0304609733671515 -2.45636844198316E-15" rpy="0 0 0" />
-      <mass value="1.16602182282338" />
+      <mass value="2.16602182282338" />
       <inertia
         ixx="0.00224997851896063"
         ixy="1.51624800598667E-16"
@@ -106,16 +107,15 @@
   <link name="right_gripper">
     <inertial>
       <origin xyz="-0.116159368597421 0.15387551741621 -0.0694598084327985" rpy="0 0 0" />
-      <!-- <mass value="1.61587084761863" /> -->
-      <mass value="0.15" />
+      <mass value="0.65" />
       <!-- ixx="0.0142352513490855" -->
-      <inertia        
+      <inertia
         ixx="0.0173"
-        ixy="-0.000838334319165038"
-        ixz="-0.00203771100584054"
-        iyy="0.022691314466943"
-        iyz="-0.000137567477815809"
-        izz="0.0302284196163977" />
+        ixy="-0.000945510032094421"
+        ixz="0.00189087832371278"
+        iyy="0.0268595354624139"
+        iyz="0.000159653946953313"
+        izz="0.0394264320820596" />
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -131,6 +131,16 @@
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/right_gripper.STL" />
       </geometry>
+    <!-- </collision>
+    <collision> -->
+      <surface>
+        <friction>
+          <ode mu="1.0" mu2="1.0" />
+        </friction>
+        <restitution>
+          <ode restitution_coefficient="0.2" threshold="0.5" />
+        </restitution>
+      </surface>
     </collision>
   </link>
 
@@ -139,14 +149,14 @@
     <parent link="chassy" />
     <child link="right_gripper" />
     <axis xyz="0 1 0" />
-    <limit lower="-0.78" upper="0.61" effort="10" velocity="5" />
+    <dynamics damping="0.01"/>
+    <limit lower="-0.78" upper="0.61" effort="20" velocity="1" />
   </joint>
 
   <link name="left_gripper">
     <inertial>
       <origin xyz="-0.129875210051789 0.153218916331966 0.0723549039504964" rpy="0 0 0" />
-      <!-- <mass value="1.86518207129963" /> -->
-      <mass value="0.5" />
+      <mass value="0.65" />
       <!-- ixx="0.020345693535521" -->
       <inertia
         ixx="0.0173"
@@ -170,6 +180,16 @@
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/left_gripper.STL" />
       </geometry>
+    <!-- </collision>
+    <collision> -->
+      <surface>
+        <friction>
+          <ode mu="1.0" mu2="1.0" />
+        </friction>
+        <restitution>
+          <ode restitution_coefficient="0.2" threshold="0.5" />
+        </restitution>
+      </surface>
     </collision>
   </link>
 
@@ -178,7 +198,8 @@
     <parent link="chassy" />
     <child link="left_gripper" />
     <axis xyz="0 1 0" />
-    <limit lower="-0.78" upper="0.61" effort="10" velocity="5" />
+    <dynamics damping="0.01"/>
+    <limit lower="-0.78" upper="0.61" effort="20" velocity="1" />
     <mimic joint="right_gripper_joint" multiplier="-1" offset="0" />
   </joint>
 
