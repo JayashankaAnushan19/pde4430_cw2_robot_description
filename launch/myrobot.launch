@@ -9,10 +9,10 @@
       <include file="$(find pde4430_cw2_robot_description)/launch/objects.launch" />
  
       <!-- Static transform publisher (base_link to base_footprint) -->
-      <node name="tf_world_chassy" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map chassy 50" />
+      <!-- <node name="tf_world_chassy" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map chassy 50" /> -->
 
       <!-- Spawn robot model in Gazebo -->
-      <node name="spawn_myrobot" pkg="gazebo_ros" type="spawn_model" args="-file $(find pde4430_cw2_robot_description)/urdf/myrobot.urdf -urdf -model pde4430_cw2_robot_description/urdf/myrobot.sdf" output="screen" />
+      <node name="spawn_myrobot" pkg="gazebo_ros" type="spawn_model" args="-file $(find pde4430_cw2_robot_description)/urdf/myrobot.urdf -urdf -model pde4430_cw2_robot_description" output="screen" />
 
       <!-- Load and launch the Joint Controller -->
       <rosparam file="$(find pde4430_cw2_robot_description)/config/joint_controller.yaml" command="load"/>   
@@ -22,9 +22,4 @@
 
       <!-- Robot State Publisher for TF of each joint -->
       <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/> 
-
-      <!-- <node name="ray_sensor_node" pkg="pde4430_cw2_robot_description" type="libgazebo_ros_laser.so" output="screen" /> -->
-
-      <!-- <node name="ray_sensor_node" pkg="pde4430_cw2_robot_description" type="libgazebo_ros_laser.so" output="screen"/> -->
-
 </launch>   

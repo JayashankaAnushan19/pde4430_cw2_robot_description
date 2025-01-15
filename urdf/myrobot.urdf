@@ -200,12 +200,12 @@
   <!-- Simulated lidar sensor link -->
   <link name="lidar_link">
     <inertial>
-      <origin xyz="-0.00683937823834196 0.0964816118260995 0.00829015544041439" rpy="0 0 0" />
+      <origin xyz="-0.00683937823834196 0.0964816118260995 0.00829015544041439" rpy="1.5708 0 0" />
       <mass value="1.0" />
       <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
     </inertial>
     <visual name="lidar_sensor_visual">
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="1.5708 0 0" />
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/lidar.STL" />
       </geometry>
@@ -223,7 +223,7 @@
 
   <!-- Simulate lidar sensor (Gazebo or ROS) -->
   <joint name="lidar_joint" type="fixed">
-    <origin xyz="0.19007 -0.35181 0.16761" rpy="1.5708 0 0" />
+    <origin xyz="0.19007 -0.35181 0.16761" rpy="0 0 0" />
     <parent link="chassy" />
     <child link="lidar_link" />
     <axis xyz="0 0 0" />
@@ -278,8 +278,8 @@
   
   <gazebo reference="lidar_link">
     <sensor type="ray" name="rplidar">
-      <pose>0 0 -0.2 0 0 0</pose>
-      <visualize>false</visualize>
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize> <!-- Enable visualization -->
       <update_rate>10</update_rate>
       <ray>
         <scan>
@@ -289,6 +289,11 @@
             <min_angle>-3.14159</min_angle>
             <max_angle>3.14159</max_angle>
           </horizontal>
+          <vertical>
+            <samples>1</samples> <!-- Single vertical ray -->
+            <min_angle>0</min_angle>
+            <max_angle>0</max_angle>
+          </vertical>
         </scan>
         <range>
           <min>0.1</min>
@@ -297,13 +302,14 @@
         </range>
       </ray>
       <plugin name="gazebo_ros_rplidar_controller" filename="libgazebo_ros_laser.so">
-        <ros>
-          <frame_id>/scan</frame_id>
-          <param name="scan_topic" value="/scan"/>
-          <remapping>~/out:=scan</remapping>
-        </ros>
+        <topicName>/scan</topicName>
         <output_type>sensor_msgs/LaserScan</output_type>
-        <frame_name>laser_link</frame_name>
+        <frameName>laser_link</frameName>
+        
+        <gaussianNoise>0.005</gaussianNoise>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>15.0</updateRate>
+
       </plugin>
     </sensor> 
   </gazebo>
