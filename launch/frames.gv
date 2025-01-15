@@ -1,8 +1,8 @@
 digraph G {
-"world" -> "chassy"[label="Broadcaster: /tf_world_chassy\nAverage rate: 11.348 Hz\nMost recent transform: 401.480 ( -0.022 sec old)\nBuffer length: 0.705 sec\n"];
-"chassy" -> "base_footprint"[label="Broadcaster: /tf_footprint_base\nAverage rate: 11.129 Hz\nMost recent transform: 401.480 ( -0.022 sec old)\nBuffer length: 0.629 sec\n"];
+"chassy" -> "lidar_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 416.874 sec old)\nBuffer length: 0.000 sec\n"];
+"map" -> "chassy"[label="Broadcaster: /tf_world_chassy\nAverage rate: 20.529 Hz\nMost recent transform: 416.898 ( -0.024 sec old)\nBuffer length: 1.851 sec\n"];
 edge [style=invis];
  subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 401.458"[ shape=plaintext ] ;
- }->"world";
+"Recorded at time: 416.874"[ shape=plaintext ] ;
+ }->"map";
 }

@@ -45,7 +45,6 @@ robot_gripper_controller:
     i: 0.5   # Integral gain (small to avoid overshoot)
     d: 1.0   # Derivative gain (damping oscillations)
     i_clamp: 1.0  # Limit to integral accumulation (to prevent windup)
-
   left_gripper_joint:
     p: 60.0
     i: 0.5

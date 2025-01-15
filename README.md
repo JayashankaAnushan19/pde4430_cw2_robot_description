@@ -53,6 +53,12 @@ sudo apt install ros-noetic-robot-state-publisher
 sudo apt install ros-noetic-teleop-twist-keyboard
 ```
 
+- For ROS packages to be clone. Once cloned, need to built the workspace
+```
+git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git
+```
+
+
 ## 6. <u>Run the program</u>
 Need to run the launch file using below command;
 `roslaunch pde443_cw2_robot_description myrobot.launch`. 

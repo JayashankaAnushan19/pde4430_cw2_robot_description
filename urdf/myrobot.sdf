@@ -1,0 +1,297 @@
+<sdf version='1.7'>
+  <model name='pde4430_cw2_robot_new'>
+    <link name='chassy'>
+      <inertial>
+        <pose>0.165966 -0.362781 0.158644 0 -0 0</pose>
+        <mass>7.57019</mass>
+        <inertia>
+          <ixx>0.078659</ixx>
+          <ixy>-5.33172e-05</ixy>
+          <ixz>0.00287948</ixz>
+          <iyy>0.106969</iyy>
+          <iyz>-0.000325647</iyz>
+          <izz>0.149981</izz>
+        </inertia>
+      </inertial>
+      <collision name='chassy_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/chassy.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='chassy_fixed_joint_lump__lidar_link_collision_1'>
+        <pose>0.19007 -0.35181 0.16761 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/lidar.STL</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='chassy_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/chassy.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='chassy_fixed_joint_lump__lidar_sensor_visual_visual_1'>
+        <pose>0.19007 -0.35181 0.16761 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/lidar.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name='rplidar' type='ray'>
+        <visualize>1</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>0</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.3</min>
+            <max>12</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='gazebo_ros_rplidar_controller' filename='libgazebo_ros_ray_sensor.so'>
+          <ros>
+            <argument>-/out:=scan</argument>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <frameName>lidar_link</frameName>
+        </plugin>
+        <pose>0.19007 -0.35181 0.16761 1.5708 -0 0</pose>
+      </sensor>
+    </link>
+    <joint name='left_gripper_joint' type='revolute'>
+      <pose relative_to='chassy'>-0.021917 -0.40319 0.062605 1.5708 -0 -0.081634</pose>
+      <parent>chassy</parent>
+      <child>left_gripper</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.78</lower>
+          <upper>0.61</upper>
+          <effort>20</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.01</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_gripper'>
+      <pose relative_to='left_gripper_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.129875 0.153219 0.072355 0 -0 0</pose>
+        <mass>0.15</mass>
+        <inertia>
+          <ixx>0.00173</ixx>
+          <ixy>-0.00094551</ixy>
+          <ixz>0.00189088</ixz>
+          <iyy>0.0268595</iyy>
+          <iyz>0.000159654</iyz>
+          <izz>0.0394264</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_gripper_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/left_gripper.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_gripper_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/left_gripper.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_wheel_joint' type='revolute'>
+      <pose relative_to='chassy'>0.149281 -0.533189 0.142605 3.14159 -0.327304 0</pose>
+      <parent>chassy</parent>
+      <child>left_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_wheel'>
+      <pose relative_to='left_wheel_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 0.029539 -0 0 -0 0</pose>
+        <mass>2.16602</mass>
+        <inertia>
+          <ixx>0.00224998</ixx>
+          <ixy>1.517e-16</ixy>
+          <ixz>5.42101e-20</ixz>
+          <iyy>0.00381517</iyy>
+          <iyz>7.32726e-17</iyz>
+          <izz>0.00224998</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_wheel_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/left_wheel.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_wheel_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/left_wheel.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_gripper_joint' type='revolute'>
+      <pose relative_to='chassy'>-0.021917 -0.32319 0.062605 1.5708 -0 0.07063</pose>
+      <parent>chassy</parent>
+      <child>right_gripper</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.78</lower>
+          <upper>0.61</upper>
+          <effort>20</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.01</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_gripper'>
+      <pose relative_to='right_gripper_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.116159 0.153876 -0.06946 0 -0 0</pose>
+        <mass>0.15</mass>
+        <inertia>
+          <ixx>0.00173</ixx>
+          <ixy>-0.00094551</ixy>
+          <ixz>0.00189088</ixz>
+          <iyy>0.0268595</iyy>
+          <iyz>0.000159654</iyz>
+          <izz>0.0394264</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_gripper_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/right_gripper.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_gripper_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/right_gripper.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_wheel_joint' type='revolute'>
+      <pose relative_to='chassy'>0.149281 -0.133189 0.142605 -3.14159 0.393095 -3.14159</pose>
+      <parent>chassy</parent>
+      <child>right_wheel</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_wheel'>
+      <pose relative_to='right_wheel_joint'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 -0.030461 -0 0 -0 0</pose>
+        <mass>2.16602</mass>
+        <inertia>
+          <ixx>0.00224998</ixx>
+          <ixy>1.51625e-16</ixy>
+          <ixz>3.79471e-19</ixz>
+          <iyy>0.00381517</iyy>
+          <iyz>7.32703e-17</iyz>
+          <izz>0.00224998</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_wheel_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/right_wheel.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_wheel_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://pde4430_cw2_robot_description/meshes/right_wheel.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <static>0</static>
+    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </model>
+</sdf>

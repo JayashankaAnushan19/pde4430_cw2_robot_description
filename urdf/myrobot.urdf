@@ -127,7 +127,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://pde4430_cw2_robot_description/meshes/right_gripper.STL" />
-      </geometry>\
+      </geometry>
       <surface>
         <friction>
           <ode mu="1.0" mu2="1.0" />
@@ -275,36 +275,37 @@
       <robotNamespace>/</robotNamespace>
     </plugin>
   </gazebo>
-
   
   <gazebo reference="lidar_link">
     <sensor type="ray" name="rplidar">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
+      <pose>0 0 -0.2 0 0 0</pose>
+      <visualize>false</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>
           <horizontal>
             <samples>360</samples>
-            <resolution>0</resolution>
+            <resolution>1</resolution>
             <min_angle>-3.14159</min_angle>
             <max_angle>3.14159</max_angle>
           </horizontal>
         </scan>
         <range>
-          <min>0.3</min>
-          <max>12.0</max>
+          <min>0.1</min>
+          <max>6.0</max>
           <resolution>0.01</resolution>
         </range>
       </ray>
-      <plugin name="gazebo_ros_rplidar_controller" filename="libgazebo_ros_ray_sensor.so">
+      <plugin name="gazebo_ros_rplidar_controller" filename="libgazebo_ros_laser.so">
         <ros>
-          <argument>-/out:=scan</argument>
+          <frame_id>/scan</frame_id>
+          <param name="scan_topic" value="/scan"/>
+          <remapping>~/out:=scan</remapping>
         </ros>
         <output_type>sensor_msgs/LaserScan</output_type>
-        <frameName>lidar_link</frameName>
+        <frame_name>laser_link</frame_name>
       </plugin>
-    </sensor>
+    </sensor> 
   </gazebo>
     
 </robot>
